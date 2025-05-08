@@ -17,6 +17,7 @@ Este es un proyecto de consola desarrollado en Java que permite realizar convers
     - `modelo` – Clases que representan los datos.
     - `logica` – Clase que gestiona la interacción con el usuario.
     - `servicio` – Lógica para conectarse con la API externa.
+    - `util` – Clase de utilidad que proporciona métodos estáticos, para ser reutilizados.
     - `principal` – Punto de entrada de la aplicación.
 
 
