@@ -18,10 +18,10 @@ public class ConversorInteractivo {
 
         Scanner teclado = new Scanner(System.in);
 
-        Mensajes.presentacion();
+        Mensajes.mostraPresentacion();
 
         while (true) {
-            Mensajes.menu();
+            Mensajes.mostrarMenu();
             System.out.println("Seleccione una opción:");
             int opcion = teclado.nextInt();
 
@@ -59,30 +59,11 @@ public class ConversorInteractivo {
                 DatosApi datosApi = new ConversorMonedaApi().consultarApiDeCambio(datosUsuario);
 
                 HistorialDeConversiones historial = new HistorialDeConversiones();
-                String historialTexto = String.format("""
-            ======================================================================
-                                   Historial de conversiones
-            ======================================================================
-            Valor Ingresado                : %.2f %s
-            Tipo de cambio                 : %s " a " %s
-            Valor convertido               : %.2f %s
-            ======================================================================
-            """, valorAconvertir,base_code, base_code, target_code, datosApi.conversion_result(), target_code
-                );
+                String historialTexto = Mensajes.mostrarHistorial(datosUsuario, datosApi);
                 historial.agregarConversion(historialTexto);
 
                 if (datosApi != null) {
-                    System.out.println(String.format("""
-                        
-                        ======================================================================
-                                            Resultado de la conversión
-                        ======================================================================
-                        Valor Ingresado                : %.2f %s
-                        Tipo de cambio                 : %s " a " %s
-                        Valor convertido               : %.2f %s
-                        ======================================================================
-                        """, valorAconvertir,base_code, base_code, target_code, datosApi.conversion_result(), target_code
-                    ));
+                  Mensajes.mostrarResultado(datosUsuario, datosApi);
                 } else {
                     System.out.println("No se pudo realizar la conversión. Intente nuevamente.");
                 }
